@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="us">
+    <head>
+        <title>Quiz</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <style>
+            body { background-image: url(https://tse3.mm.bing.net/th?id=OIP.1tEtpEOEZKER9Vl2lMrLqAHaEo&pid=Api&P=0&w=244&h=153);
+                   background-repeat: no-repeat;
+                   background-size: cover;
+                   font-family: Georgia, 'Times New Roman', Times, serif;
+                   color:aliceblue;
+            }
+            #h1 { color:wheat; font-size: 50px; text-align: center; }
+            #h2 { color: green; text-align: center; font-size: 50px; }
+            .button1{ background-color: rgba(180,180,180,0.5); left: 45%; position: relative; font-size: 40px;color: black; width: 150px; border-radius: 10px; padding: 10px;cursor: pointer;text-align: center;border: 5px solid blue;}
+            .optionA , .optionB , .optionC , .optionD {padding: 10px; color:black;border: 2px solid rgb(60,60,60); background-color: rgba(180,180,180,0.2);width: 600px;position: relative;}
+            #questionnum {font-size: 35px;font-weight: 400; text-align: center;color:cornsilk;}
+            #disapear{ margin: 0 auto; }
+            #number {text-align: center; font-size: 40px; color: coral;}
+            #optionA,#optionB , #optionC,#optionD { background-color: rgba(180,180,180,0.2); width: 600px;left: 30%; position: relative; }
+            #pic1{ width: 260px; height: 160px;}
+            
+        </style>
+    </head>
+    <body>
+        <p id="h1"><b>How much do you know about Coronavirus?</b></p>
+        <div class="quiz" id="b1">
+            <h2 id="h2"><b>Let's Check!!</b></h2>
+            <div id="quizcontainer">
+                  <div id="number"></div><br>
+                  <div id="questionnum"><em>Here is a chance to test your knowledge.There’s no penalty for incorrect answers, so feel free to wager a guess. At the end of the quiz, you’ll get a total score</em></div>
+                  <div id="optionA"></div>
+                  <div id="optionB"></div>
+                  <div id="optionC"></div>
+                  <div id="optionD"></div><br><br>
+                  <div id="disapear1"> 
+                        <button class="button1" title="Click Here" onclick="beginquiz()">Start</button>
+                  </div> 
+                  <div>
+                    <span id="image"><img id="pic1" src="https://images.moneycontrol.com/assets/images/quiz/get-started.png"></span>
+                      <span id="next"></span>
+                  </div>
+            </div>    
+         </div>
+         <script>
+             var q = ["The first case of novel coronavirus was identified in..<br><br>","Mile symptoms of novel coronavirus are..<br><br>","What is coronavirus?<br><br>","From where coronavirus got it's name?<br><br>","What other viruses belongs to the coronavirus family?<br><br>","How many countries are suffering from this coronavirus outbreak in the world?<br><br>","Thailand announced that it has proceeded to test it's novel coronavirus vaccine on which animal?<br><br>","In a study, which cells are found in COVID-19 patients 'bode well' for long term immunity?<br><br>","Name the vaccine that is jointly developed by the German company BioNTech and US pharma giant pfizer for COVID-19..<br><br>","Name a clinical trial in which blood is transfused from recovered COVID-19 patients to a coronavirus patient who is in critical conditions<br><br>"];
+             var a1 = ["<button class=optionA onclick=q1w1()>Beijing</button>","<button class=optionA onclick=q2w1()>Fever</button>","<button class=optionA onclick=q3w1()>Large family of virus</button>","<button class=optionA onclick=q4c()>Due to their crown-like projections</button>","<button class=optionA onclick=q5w1()>SARS and influenza</button>","<button class=optionA onclick=q6w1()>More than 50</button>","<button class=optionA onclick=q7c()>Monkeys</button>","<button class=optionA onclick=q8w1()>P-cell</button>","<button class=optionA onclick=q9w1()>BNT162</button>","<button class=optionA onclick=q10c()>Phasma Therapy</button>"];
+
+             var a2 = ["<button class=optionB onclick=q1w2()>Shanghai</button>","<button class=optionB onclick=q2w1()>Cough</button>","<button class=optionB onclick=q3w2()>Belongs to the family of Nidovirus</button>","<button class=optionB onclick=q4w1()>Due to their leaf-like projections</button>","<button class=optionB onclick=q5c()>SARS and MERS</button>","<button class=optionB onclick=q6w2()>More than 100</button>","<button class=optionB onclick=q7w1()>Lizards</button>","<button class=optionB onclick=q8w2()>D-cell</button>","<button class=optionB onclick=q9w2()>PICOVACC</button>","<button class=optionB onclick=q10w1()>Solidarity</button>"];
+
+             var a3 = ["<button class=optionC onclick=q1c()>Wuhan</button>","<button class=optionC onclick=q2w3()>Shortness of breath</button>","<button class=optionC onclick=q3c()>Both A and B are correct</button>","<button class=optionC onclick=q4w2()>Due to their surface structure of bricks</button>","<button class=optionC onclick=q5w2()>SARS and HIV</button>","<button class=optionC onclick=q6w3()>More than 150</button>","<button class=optionC onclick=q7w2()>Kites</button>","<button class=optionC onclick=q8c()>T-cell</button>","<button class=optionC onclick=q9w3()>Both A and B</button>","<button class=optionC onclick=q10w2()>Remdesivir</button>"];
+
+             var a4 = ["<button class=optionD onclick=q1w3()>Tianjin</button>","<button class=optionD onclick=q2c()>All of the above</button>","<button class=optionD onclick=q3w3()>None of the above</button>","<button class=optionD onclick=q4w3()>None of the above</button>","<button class=optionD onclick=q5w3()>MERS and HIV</button>","<button class=optionD onclick=q6c()>More than 200</button>","<button class=optionD onclick=q7w3()>None of the above</button>","<button class=optionD onclick=q8w3()>Endothelial cells</button>","<button class=optionD onclick=q9c()>Neither A nor B</button>","<button class=optionD onclick=q10w3()>Hydroxy Chloroquine</button>"];
+             var score = 0;
+
+             function beginquiz(){
+                 document.getElementById('number').innerHTML = " Question " + "1" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[0];
+                 document.getElementById('optionA').innerHTML = a1[0];
+                 document.getElementById('optionB').innerHTML = a2[0];
+                 document.getElementById('optionC').innerHTML = a3[0];
+                 document.getElementById('optionD').innerHTML = a4[0];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz2()>Next</button>";
+             }
+             var a = 0;
+             function q1c(){if(a==0){
+                 document.getElementById('optionC').style.backgroundColor = "green";
+                 score++;
+                 a=1;
+             }
+            }
+             function q1w1(){if(a==0){
+                 optionA.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 a=1;
+             }
+            }
+             function q1w2(){if(a==0){
+                 optionB.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 a=1;
+             }
+            }
+             function q1w3(){if(a==0){
+                 optionD.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 a=1;
+             }
+            }
+             function quiz2(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "2" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[1];
+                 document.getElementById('optionA').innerHTML = a1[1];
+                 document.getElementById('optionB').innerHTML = a2[1];
+                 document.getElementById('optionC').innerHTML = a3[1];
+                 document.getElementById('optionD').innerHTML = a4[1];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz3()>Next</button>";
+             }
+             var b = 0;
+             function q2c(){if(b==0){
+                 document.getElementById('optionD').style.backgroundColor = "green";
+                 score++;
+                 b=1;
+             }
+            }
+             function q2w1(){if(b==0){
+                 optionA.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 b=1;
+             }
+            }
+             function q2w2(){if(b==0){
+                 optionB.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 b=1;
+             }}
+             function q2w3(){if(b==0){
+                 optionC.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 b=1;
+             }}
+
+             function quiz3(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "3" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[2];
+                 document.getElementById('optionA').innerHTML = a1[2];
+                 document.getElementById('optionB').innerHTML = a2[2];
+                 document.getElementById('optionC').innerHTML = a3[2];
+                 document.getElementById('optionD').innerHTML = a4[2];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz4()>Next</button>";
+             }
+             
+             var c = 0;
+             function q3c(){if(c==0){
+                 document.getElementById('optionC').style.backgroundColor = "green";
+                 score++;
+                 c=1;
+             }}
+             function q3w1(){if(c==0){
+                 optionA.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 c=1;
+             }}
+             function q3w2(){if(c==0){
+                 optionB.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 c=1;
+             }}
+             function q3w3(){if(c==0){
+                 optionD.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 c=1;
+             }}
+
+             function quiz4(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "4" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[3];
+                 document.getElementById('optionA').innerHTML = a1[3];
+                 document.getElementById('optionB').innerHTML = a2[3];
+                 document.getElementById('optionC').innerHTML = a3[3];
+                 document.getElementById('optionD').innerHTML = a4[3];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz5()>Next</button>";
+             }
+             var d = 0;
+             function q4c(){if(d==0){
+                 document.getElementById('optionA').style.backgroundColor = "green";
+                 score++;
+                 d=1;
+             }}
+             function q4w1(){if(d==0){
+                 optionB.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 d=1;
+             }}
+             function q4w2(){if(d==0){
+                 optionC.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 d=1;
+             }}
+             function q4w3(){if(d==0){
+                 optionD.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 d=1;
+             }}
+
+             function quiz5(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "5" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[4];
+                 document.getElementById('optionA').innerHTML = a1[4];
+                 document.getElementById('optionB').innerHTML = a2[4];
+                 document.getElementById('optionC').innerHTML = a3[4];
+                 document.getElementById('optionD').innerHTML = a4[4];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz6()>Next</button>";
+             }
+             var e = 0;
+             function q5c(){if(e==0){
+                 document.getElementById('optionB').style.backgroundColor = "green";
+                 score++;
+                 e=1;
+             }}
+             function q5w1(){if(e==0){
+                 optionA.style.backgroundColor = "red";
+                 optionB.style.backgroundColor = "green";
+                 e=1;
+             }}
+             function q5w2(){if(e==0){
+                 optionC.style.backgroundColor = "red";
+                 optionB.style.backgroundColor = "green";
+                 e=1;
+             }}
+             function q5w3(){if(e==0){
+                 optionD.style.backgroundColor = "red";
+                 optionB.style.backgroundColor = "green";
+                 e=1;
+             }}
+
+
+             function quiz6(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "6" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[5];
+                 document.getElementById('optionA').innerHTML = a1[5];
+                 document.getElementById('optionB').innerHTML = a2[5];
+                 document.getElementById('optionC').innerHTML = a3[5];
+                 document.getElementById('optionD').innerHTML = a4[5];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz7()>Next</button>";
+             }
+             var f = 0;
+             function q6c(){if(f==0){
+                 document.getElementById('optionD').style.backgroundColor = "green";
+                 score++;
+                 f=1;
+             }}
+             function q6w1(){if(f==0){
+                 optionA.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 f=1;
+             }}
+             function q6w2(){if(f==0){
+                 optionB.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 f=1;
+             }}
+             function q6w3(){if(f==0){
+                 optionC.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 f=1;
+             }}
+
+
+             function quiz7(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "7" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[6];
+                 document.getElementById('optionA').innerHTML = a1[6];
+                 document.getElementById('optionB').innerHTML = a2[6];
+                 document.getElementById('optionC').innerHTML = a3[6];
+                 document.getElementById('optionD').innerHTML = a4[6];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz8()>Next</button>";
+             }
+             var g = 0;
+             function q7c(){if(g==0){
+                 document.getElementById('optionA').style.backgroundColor = "green";
+                 score++;
+                 g=1;
+             }}
+             function q7w1(){if(g==0){
+                 optionB.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 g=1;
+             }}
+             function q7w2(){if(g==0){
+                 optionC.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 g=1;
+             }}
+             function q7w3(){if(g==0){
+                 optionD.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 g=1;
+             }}
+
+
+             function quiz8(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "8" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[7];
+                 document.getElementById('optionA').innerHTML = a1[7];
+                 document.getElementById('optionB').innerHTML = a2[7];
+                 document.getElementById('optionC').innerHTML = a3[7];
+                 document.getElementById('optionD').innerHTML = a4[7];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz9()>Next</button>";
+             }
+
+             var h = 0;
+             function q8c(){if(h==0){
+                 document.getElementById('optionC').style.backgroundColor = "green";
+                 score++;
+                 h=1;
+             }}
+             function q8w1(){if(h==0){
+                 optionA.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 h=1;
+             }}
+             function q8w2(){if(h==0){
+                 optionB.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 h=1;
+             }}
+             function q8w3(){if(h==0){
+                 optionD.style.backgroundColor = "red";
+                 optionC.style.backgroundColor = "green";
+                 h=1;
+             }}
+
+             function quiz9(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "9" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[8];
+                 document.getElementById('optionA').innerHTML = a1[8];
+                 document.getElementById('optionB').innerHTML = a2[8];
+                 document.getElementById('optionC').innerHTML = a3[8];
+                 document.getElementById('optionD').innerHTML = a4[8];
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=quiz10()>Next</button>";
+             }
+             var i = 0;
+             function q9c(){if(i==0){
+                 document.getElementById('optionD').style.backgroundColor = "green";
+                 score++;
+                 i=1;
+             }}
+             function q9w1(){if(i==0){
+                 optionA.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 i=1;
+             }}
+             function q9w2(){if(i==0){
+                 optionB.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 i=1;
+             }}
+             function q9w3(){if(i==0){
+                 optionC.style.backgroundColor = "red";
+                 optionD.style.backgroundColor = "green";
+                 i=1;
+             }}
+
+
+             function quiz10(){
+                 optionA.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionB.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionC.style.backgroundColor = "rgba(120,120,120,0.5)";
+                 optionD.style.backgroundColor = "rgba(120,120,120,0.5)";
+        
+                 document.getElementById('number').innerHTML = " Question " + "10" + " " + "/ 10" ;
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "";
+                 image.innerHTML = "";
+                 document.getElementById('questionnum').innerHTML = q[9];
+                 document.getElementById('optionA').innerHTML = a1[9];
+                 document.getElementById('optionB').innerHTML = a2[9];
+                 document.getElementById('optionC').innerHTML = a3[9];
+                 document.getElementById('optionD').innerHTML = a4[9];
+                 next.innerHTML = "";
+                 document.getElementById('next').innerHTML = "<button class=button1 onclick=scoreboard()>Finish</button>";
+             }
+             var j = 0;
+             function q10c(){if(j==0){
+                 document.getElementById('optionA').style.backgroundColor = "green";
+                 score++;
+                 j=1;
+                } 
+             }
+             function q10w1(){if(j==0){
+                 optionB.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 j=1;
+               }
+             }
+             function q10w2(){if(j==0){
+                 optionC.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 j=1;
+                }
+             }
+             function q10w3(){if(j==0){
+                 optionD.style.backgroundColor = "red";
+                 optionA.style.backgroundColor = "green";
+                 j=1;
+                }
+             }
+             function scoreboard(){
+                 document.getElementById('number').innerHTML = "Your Score is "+ "" + score + "" + " / 10";
+                 document.getElementById('disapear1').innerHTML = "";
+                 document.getElementById('h2').innerHTML = "You  are Done!!";
+                 document.getElementById('questionnum').innerHTML = "";
+                 document.getElementById('optionA').innerHTML = "";
+                 document.getElementById('optionB').innerHTML = "";
+                 document.getElementById('optionC').innerHTML = "";
+                 document.getElementById('optionD').innerHTML = "";
+                 image.innerHTML = "";
+                 next.innerHTML = "";
+                }
+        </script>
+    </body>
+</html>
+       
+       
+            
+
+
+
+        
+        
+    
+    
+        
